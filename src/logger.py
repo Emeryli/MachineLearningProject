@@ -16,6 +16,8 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+logger = logging.getLogger(__name__)
+
 # Test
 def main():
      logging.info("Logging has started")
