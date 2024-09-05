@@ -1,11 +1,13 @@
 # Import
 import os
 import sys
+import pandas as pd
+
 from src.exception import CustomException
 from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-import pandas as pd
+from src.components.data_transformation import DataTransformation
 
 # Data Ingestion Config Class
 @dataclass
@@ -48,5 +50,9 @@ class DataIngestion:
 if __name__=="__main__":
     # Create instance of DataIngestion class
     obj = DataIngestion()
-    # Call the method
-    obj.initiate_data_ingestion()
+    # Call the method, assign the returned values into train and test
+    train_data, test_data = obj.initiate_data_ingestion()
+    # create an instance of data transformation class
+    data_transformation=DataTransformation()
+    # test the transformation initial transformation method
+    data_transformation.initial_transformation(train_data, test_data)
