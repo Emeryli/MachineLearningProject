@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 import dill
 from src.exception import CustomException
+from sklearn.metrics import r2_score
+
 
 
 # save_object
@@ -21,4 +23,29 @@ def save_object(file_path, obj):
         
     except Exception as e:
         raise CustomException(e, sys)
+
+# evaluate different models    
+def evaluate_models(X_train, y_train, X_test, y_test, models:dict):
+    try:
+        # create a empty list
+        report = {}
+        # loop all the models
+        for i in range(len(list(models.keys()))):
+            # get each model
+            model = list(models.values())[i]
+            # train each model using fit
+            model.fit(X_train, y_train)
+            # predict the models for both train and test
+            y_train_predict = model.predict(X_train)
+            y_test_predict = model.predict(X_test)
+            # get the r2 score
+            train_model_score = r2_score(y_train, y_train_predict)
+            test_model_score = r2_score(y_test, y_test_predict)
+            # add the key-value (model name - score) pairs
+            report[list(models.keys())[i]] = test_model_score
+        # return the pairs 
+        return report
+        
+    except Exception as e:
+        raise CustomException(e,sys)
         
