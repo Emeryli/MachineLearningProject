@@ -41,17 +41,17 @@ class DataTrainer:
             logging.info("Created X, y train and test arrays")
             # models: dict
             models = {
-                "Random Forest":RandomForestRegressor(),
-                "Decision Tree":DecisionTreeRegressor(),
-                "Gradient Boosting":GradientBoostingRegressor(),
                 "Linear Regression": LinearRegression(),
-                "K-Neighbors Classifier":KNeighborsRegressor(),
-                "XGBClassifier":XGBRegressor(),
-                "CatBoosting Classifier":CatBoostRegressor(verbose=False),
-                "AdaBoost Classifier":AdaBoostRegressor()
             }
+            # Parameters 
+            params = {              
+                "Linear Regression": {
+                    'fit_intercept': [True, False],
+                    'copy_X': [True, False],
+                    'n_jobs': [None, -1],  # None for single core, -1 for all cores
+                    'positive': [True, False]}}       
             # use dict to store the result of evaluating models
-            results = evaluate_models(X_train, y_train, X_test, y_test, models)
+            results = evaluate_models(X_train, y_train, X_test, y_test, models, params)
             logging.info("Models have been evaluated")
             # get the best model score
             best_model_score = max(results.values())
