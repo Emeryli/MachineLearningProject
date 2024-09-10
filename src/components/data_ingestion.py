@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import DataTrainer
+import os
 
 # Data Ingestion Config Class
 @dataclass
@@ -26,7 +27,7 @@ class DataIngestion:
         logging.info("Entered the data ingestion method or component")
         try:
             # Read CSV
-            df = pd.read_csv('notebook\data\StudentsPerformance.csv')
+            df = pd.read_csv(os.path.join('notebook','data','StudentsPerformance.csv'))
             logging.info("Read dataset as dataframe")
             # Create directory
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok = True)
