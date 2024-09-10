@@ -1,6 +1,7 @@
 # import
 from flask import Flask, request, render_template
 from src.pipeline.prediction_pipeline import CustomData, PredictionPipeline
+import os
 
 # create a flask instance
 application = Flask(__name__)
@@ -38,5 +39,6 @@ def predict_datapoint():
       
 # test
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get('PORT', 8000))
+    app.run('0.0.0.0', port=port)
     
