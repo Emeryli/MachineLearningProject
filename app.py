@@ -38,5 +38,5 @@ def predict_datapoint():
       
 # test
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
     
