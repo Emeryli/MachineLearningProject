@@ -51,21 +51,23 @@ class DataTrainer:
                     'n_jobs': [None, -1],  # None for single core, -1 for all cores
                     'positive': [True, False]}}       
             # use dict to store the result of evaluating models
-            results = evaluate_models(X_train, y_train, X_test, y_test, models, params)
+            model_scores, model_w_params = evaluate_models(X_train, y_train, X_test, y_test, models, params)
             logging.info("Models have been evaluated")
             # get the best model score
-            best_model_score = max(results.values())
+            best_model_score = max(model_scores.values())
             # get the name of the model
-            max_key = max(results, key=results.get)
+            best_model = max(model_scores, key=model_scores.get)
+            best_model_w_params = model_w_params[best_model]
             # raise exception if the the best score is below 0.6
             if best_model_score < 0.6:
                 logging.info("All models' r2 scores are below 0.6")
                 raise CustomException("No best model found")
             else:
-                logging.info(f"Best model is {max_key}, which has a score of {best_model_score}")
+                logging.info(f"Best model is {best_model}, which has a score of {best_model_score}")
             
             save_object(file_path=self.model_trainer_config.train_model_file_path,
-                        obj=max_key)
-            return best_model_score            
+                        obj=best_model_w_params)
+            logging.info(type(best_model_w_params))
+            return best_model_score, best_model_w_params       
         except Exception as e:
             raise CustomException(e, sys)

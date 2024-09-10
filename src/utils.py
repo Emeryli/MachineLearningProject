@@ -29,7 +29,8 @@ def save_object(file_path, obj):
 def evaluate_models(X_train, y_train, X_test, y_test, models:dict, params):
     try:
         # create a empty list
-        report = {}
+        reportScore = {}
+        reportFullModel = {}
         # loop all the models
         for i in range(len(list(models.keys()))):
             # get each model
@@ -48,10 +49,18 @@ def evaluate_models(X_train, y_train, X_test, y_test, models:dict, params):
             train_model_score = r2_score(y_train, y_train_predict)
             test_model_score = r2_score(y_test, y_test_predict)
             # add the key-value (model name - score) pairs
-            report[list(models.keys())[i]] = test_model_score
+            reportScore[list(models.keys())[i]] = test_model_score
+            reportFullModel[list(models.keys())[i]] = best_model
         # return the pairs 
-        return report
+        return reportScore, reportFullModel
         
     except Exception as e:
         raise CustomException(e,sys)
         
+# load pickle object
+def load_object(file_path):
+    try:
+        with open(file_path,'rb') as obj:
+            return dill.load(obj)
+    except Exception as e:
+        raise CustomException(e,sys)
