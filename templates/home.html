@@ -53,22 +53,22 @@
                 placeholder="Enter you Parent Education" required>
                 <option class="placeholder" {% if not parental_level_of_education %} selected {% endif %} disabled value="">Select Parent Education</option>
                 <option value="associate's degree" {% if parental_level_of_education == "associate's degree" %} selected {% endif %}>
-                    associate's degree
+                    Associate's degree
                 </option>
                 <option value="bachelor's degree" {% if parental_level_of_education == "bachelor's degree" %} selected {% endif %}>
-                    bachelor's degree
+                    Bachelor's degree
                 </option>
                 <option value="high school" {% if parental_level_of_education == "high school" %} selected {% endif %}>
-                    high school
+                    High school
                 </option>
                 <option value="master's degree" {% if parental_level_of_education == "master's degree" %} selected {% endif %}>
-                    master's degree
+                    Master's degree
                 </option>
                 <option value="some college" {% if parental_level_of_education == "some college" %} selected {% endif %}>
-                    some college
+                    Some college
                 </option>
                 <option value="some high school" {% if parental_level_of_education == "some high school" %} selected {% endif %}>
-                    some high school
+                    Some high school
                 </option>
             </select>
         </div>
@@ -77,10 +77,10 @@
             <select class="form-control" name="lunch" placeholder="Enter you Lunch" id="lunch" required>
                 <option class="placeholder"  {% if not lunch %} selected {% endif %} disabled value="">Select Lunch Type</option>
                 <option value="free/reduced" {% if lunch == "free/reduced" %} selected {% endif %}>
-                    free/reduced
+                    Free/Reduced
                 </option>
                 <option value="standard" {% if lunch == "standard" %} selected {% endif %}>
-                    standard
+                    Standard
                 </option>
             </select>
         </div>
@@ -88,7 +88,7 @@
             <label class="form-label">Test preparation Course</label>
             <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
                 id="test_preparation_course" required>
-                <option class="placeholder" {% if not test_preparation_course %} selected {% endif %} disabled value="">Select Test_course</option>
+                <option class="placeholder" {% if not test_preparation_course %} selected {% endif %} disabled value="">Select Test Course</option>
                 <option value="none" {% if test_preparation_course == "none" %} selected {% endif %}>
                     None
                 </option>
@@ -132,15 +132,12 @@
             document.getElementById('writing_score').value = '';
             }
         
-<<<<<<< HEAD
             const form_fields = document.querySelectorAll('input, select');
             form_fields.forEach(field => {
                 field.addEventListener('click', () =>{
                     document.getElementById('result').innerText = "";
                 });
             });
-=======
->>>>>>> a397ca03cd8cfbd1f6225c96c1ec648ce704bab9
     </script>
    <body>
 </html>
